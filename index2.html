@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practica 2 Child</title>
+</head>
+<body>
+   <p>Introduce tu texto</p> <input type="text" id="nombre"> <br>
+   <div id="lista"></div>
+   <br>
+   <input type="radio" name="opciones" id="addFirst">AddFirst
+   <input type="radio" name="opciones" id="addLast">AddLast
+   <input type="radio" name="opciones" id="removeFirst">RemoveFirst
+   <input type="radio" name="opciones" id="removeLast">RemoveLast
+   <input type="radio" name="opciones" id="replaceFirst">ReplaceFirst
+   <input type="radio" name="opciones" id="replaceLast">ReplaceLast
+   <input type="button" value="GO!" id="go">
+</body>
+<script>
+
+   document.getElementById('go').addEventListener('click',funcion,false);
+
+   function funcion () {
+       var texto = document.getElementById('nombre').value;
+
+
+       switch (document.querySelector('input[name="opciones"]:checked').id) {
+        case ("addFirst"):
+            AddFirst(texto);
+            break;
+        case ("addLast"):
+            AddLast(texto);
+            break;
+        case ("removeFirst"):
+            RemoveFirst();
+            break;
+        case ("removeLast"):
+            RemoveLast();
+            break;
+        case ("replaceFirst"):
+            ReplaceFirst(texto);
+            break;
+        case ("replaceLast"):
+            ReplaceLast(texto);
+            break;
+       }
+    }
+
+    function AddFirst(texto) {
+        const parrafo = document.createElement('li')
+        parrafo.innerHTML=texto
+        document.getElementById('lista').insertBefore(parrafo,document.getElementById("lista").firstChild)
+    }
+
+    function AddLast(texto) {
+        const parrafo = document.createElement('li')
+        parrafo.innerHTML=texto
+        document.getElementById('lista').appendChild(parrafo)
+    }
+
+    function RemoveFirst() {
+        document.getElementById('lista').removeChild(document.getElementById("lista").firstChild)
+    }
+
+    function RemoveLast() {
+        document.getElementById('lista').removeChild(document.getElementById("lista").lastChild)
+    }
+
+    function ReplaceFirst(texto) {
+        const parrafo = document.createElement('li')
+        parrafo.innerHTML=texto
+        document.getElementById('lista').replaceChild(parrafo,document.getElementById("lista").firstChild)
+    }
+
+    function ReplaceLast(texto) {
+        const parrafo = document.createElement('li')
+        parrafo.innerHTML=texto
+        document.getElementById('lista').replaceChild(parrafo,document.getElementById("lista").lastChild)
+    }
+
+</script>
+</html>
