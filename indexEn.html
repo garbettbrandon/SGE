@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORM</title>
+</head>
+
+<body>
+    <H1>Login</H1>
+    <input type="button" id="google" value="Enter with Google">
+    <h3>Or</h3>
+    <input type="text" id="correo"><br><br>
+    <input type="text" id="contraseña"><br><br>
+    <a href="">I forgot my password</a><br><br>
+    <input type="button" id="Iniciar" value="Login">
+    <h3>¿New here?</h3>
+    <input type="button" id="Iniciar" value="Create account">
+
+    <script>
+        window.onload = function () {
+
+            console.log(navigator.language)
+
+            var ln = navigator.language;
+            /*Validar que no se encuentre en la pagina correspondiente a su idioma*/
+            let pagActual = window.location.pathname;
+
+            console.log(window.location.pathname)
+
+            if (ln == 'en-US' && pagActual.includes("indexEs")) {
+                window.location.href = 'indexEn.html';
+            } else if (ln == 'es-ES' && pagActual.includes("indexEn")) {
+                window.location.href = 'indexEs.html';
+            } else {
+                console.log("Otro idioma");
+            }
+
+        }
+    </script>
+</body>
+
+</html>

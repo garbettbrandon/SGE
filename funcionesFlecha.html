@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba funcion flecha</title>
+</head>
+<body>
+    <input type="text" name="" id="nombre">Nombre <br>
+    <input type="text" name="" id="edad">Edad <br>
+    <input type="text" name="" id="team">Equipo de futbol <br>
+    <input type="button" value="Saludo" id="saludo"> <br>
+    <input type="button" value="Edad" id="edad2030"> <br>
+    <input type="button" value="Equipo" id="equipo"> <br> 
+    <script>
+        document.getElementById("saludo").addEventListener("click",()=>alert("Hola "+ document.getElementById("nombre").value),false)
+        //document.getElementById("edad2030").addEventListener(
+        //    "click",()=>alert(`En 2030 tendrás: ${parseInt(document.getElementById("edad").value) + 8}`),false)
+        let edad = document.getElementById("edad").value
+        document.getElementById("edad2030").addEventListener("click",(event, edad=document.getElementById("edad").value, a=8)=>alert(edad+a),false)
+    </script>
+</body>
+
+</html>

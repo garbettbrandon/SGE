@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <title>Users</title>
+</head>
+
+<body>
+    <div class="position-absolute top-100 start-50 translate-middle">
+        <div class="table-responsive card">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>NAME</th>
+                        <th>SALARY</th>
+                    </tr>
+                </thead>
+                <tbody id="contenido">
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br><br><br>
+        <div class="card" style="width: 35rem;">
+            <form>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="inputName">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Salario</label>
+                    <input type="number" class="form-control" id="inputSalario">
+                </div>
+                <button type="button" class="btn btn-outline-dark" id="añadir">Añadir</button>
+                <button type="button" class="btn btn-outline-dark" id="mod">Modificar</button>
+                <button type="button" class="btn btn-outline-dark" id="del">Eliminar</button>
+                <button type="button" class="btn btn-outline-dark" id="show_id">Mostrar por ID</button>
+                <button type="button" class="btn btn-outline-dark" id="show">Mostrar Todos</button>
+            </form>
+        </div>
+    </div>
+    <script>
+
+        document.getElementById('show').addEventListener("click", traer, false);
+        document.getElementById('show_id').addEventListener("click", mostrarId, false);
+        document.getElementById('añadir').addEventListener("click", añadir, false);
+        document.getElementById('del').addEventListener("click", borrar, false);
+        document.getElementById('mod').addEventListener("click", editar, false);
+
+        var contenido = document.querySelector('#contenido')
+
+        const cors = 'https://cors-anywhere.herokuapp.com/'
+        const yourUrl = cors + 'https://nodejs-mysql-restapi-production-d8bd.up.railway.app/api/employees/';
+
+
+        function traer() {
+            fetch(yourUrl)
+                .then(res => res.json())
+                .then(datos => {
+                    tabla(datos)
+                })
+        }
+
+        function tabla(datos) {
+            contenido.innerHTML = ""
+            for (let valor of datos) {
+                contenido.innerHTML += `
+                    <tr>
+                        <td>${valor.id}</td>
+                        <td>${valor.name}</td>
+                        <td>${valor.salary}</td>
+                    </tr>
+                `
+            }
+        }
+
+        function mostrarId() {
+            var id_buscar = prompt()
+            fetch(cors + 'https://nodejs-mysql-restapi-production-d8bd.up.railway.app/api/employees/' + id_buscar)
+                .then(res => res.json())
+                .then(datos => {
+                    dato_id(datos)
+                })
+        }
+
+        function dato_id(datos) {
+            console.log(datos)
+            contenido.innerHTML = ""
+            contenido.innerHTML += `
+                    <tr>
+                        <td>${datos.id}</td>
+                        <td>${datos.name}</td>
+                        <td>${datos.salary}</td>
+                    </tr>
+                `
+        }
+
+        function borrar() {
+            var id_borrar = prompt()
+            fetch(cors + 'https://nodejs-mysql-restapi-production-d8bd.up.railway.app/api/employees/' + id_borrar, { method: 'DELETE' })
+                .then(res => res.json())
+                .then(datos => { dato_id(datos) })
+        }
+
+        function añadir() {
+            var nombre = document.getElementById("inputName").value;
+            var salario = document.getElementById("inputSalario").value;
+            const data = {
+                name: nombre,
+                salary: salario
+            }
+            fetch(yourUrl, { method: 'POST', body: JSON.stringify(data), headers: { 'Content-Type': 'application/json' } })
+                .then(response => response.json())
+                .then(datos => console.log(datos));
+        }
+
+        function editar() {
+            var id_mod = prompt()
+            var nombre = document.getElementById("inputName").value;
+            var salario = document.getElementById("inputSalario").value;
+            const data = {
+                name: nombre,
+                salary: salario
+            }
+
+            fetch(yourUrl + id_mod, { method: 'PATCH', body: JSON.stringify(data), headers: { 'Content-Type': 'application/json' } })
+                .then(response => response.json())
+                .then(datos => console.log(datos));
+        }
+
+    </script>
+</body>
+
+</html>
