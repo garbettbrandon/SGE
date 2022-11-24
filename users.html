@@ -23,7 +23,7 @@
                 </thead>
                 <tbody id="contenido">
                     <tr>
-                        <td></td>
+                        <td><a href="users_porID.html"></a></td>
                         <td></td>
                         <td></td>
                     </tr>
@@ -76,7 +76,7 @@
             for (let valor of datos) {
                 contenido.innerHTML += `
                     <tr>
-                        <td>${valor.id}</td>
+                        <td><a href="users_porID.html?ID=${valor.id}">${valor.id}</a></td>
                         <td>${valor.name}</td>
                         <td>${valor.salary}</td>
                     </tr>
