@@ -46,6 +46,7 @@
                 <button type="button" class="btn btn-outline-dark" id="del">Eliminar</button>
                 <button type="button" class="btn btn-outline-dark" id="show_id">Mostrar por ID</button>
                 <button type="button" class="btn btn-outline-dark" id="show">Mostrar Todos</button>
+                <input type="file" id="jsonfileinput" />
             </form>
         </div>
     </div>
@@ -137,6 +138,22 @@
                 .then(response => response.json())
                 .then(datos => console.log(datos));
         }
+
+        document.getElementById("jsonfileinput").addEventListener("change", function () {
+            var file_to_read = document.getElementById("jsonfileinput").files[0];
+            var fileread = new FileReader();
+            fileread.onload = function (e) {
+                var content = e.target.result;
+                var intern = JSON.parse(content); // parse json 
+                console.log(intern)
+                for (let index = 0; index < intern.length; index++) {
+                    fetch(yourUrl, { method: 'POST', body: JSON.stringify(intern[index]), headers: { 'Content-Type': 'application/json' }})
+                    .then(response => response.json())
+                    .then(datos => console.log(datos));   
+                }
+            };
+            fileread.readAsText(file_to_read);
+        });
 
     </script>
 </body>
