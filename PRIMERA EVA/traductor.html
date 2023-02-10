@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traductor</title>
+</head>
+
+<body>
+
+    <h1>Traductor con API Google Translate</h1>
+    Texto Original <br>
+    <select name="IdiomaEntrada" id="lEntrada">
+        <option value="es">Castellano</option>
+        <option value="en">Inglés</option>
+        <option value="de">Alemán</option>
+    </select> <br>
+    <input type="text" id="TextoEntrada"> <br>
+    <button id="botonTraducir">Traducir</button>
+    <button id="botonDetectar">Detectar Idioma</button>
+    <button id="botonAutomatico">Automático a Castellano</button><br>
+    Texto Traducido <br>
+    <select name="IdiomaSalida" id="lSalida">
+        <option value="es">Castellano</option>
+        <option value="en">Inglés</option>
+        <option value="de">Alemán</option>
+    </select><br>
+    <input type="text" id="TextoSalida">
+
+
+    <script>
+
+        document.getElementById("botonDetectar").addEventListener("click", dectectarIdioma, false);
+
+        function dectectarIdioma() {
+            const encodedParams = new URLSearchParams();
+            encodedParams.append("q", document.getElementById("TextoEntrada").value);
+
+            const options = {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/x-www-form-urlencoded',
+                    'Accept-Encoding': 'application/gzip',
+                    'X-RapidAPI-Key': '34739fb105msha98da30af8e79d0p117466jsncd7575a611d8',
+                    'X-RapidAPI-Host': 'google-translate1.p.rapidapi.com'
+                },
+                body: encodedParams
+            };
+
+            fetch('https://google-translate1.p.rapidapi.com/language/translate/v2/detect', options)
+                .then(response => response.json())
+                .then(response => console.log(response.data.detections[0].language)) 
+                .catch(err => console.error(err));
+        }
+
+        document.getElementById("botonTraducir").addEventListener("click", traducir, false);
+
+        function traducir() {
+            const encodedParams = new URLSearchParams();
+            encodedParams.append("q", document.getElementById("TextoEntrada").value);
+            encodedParams.append("target", lSalida.value);
+            encodedParams.append("source", lEntrada.value);
+
+            const options = {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/x-www-form-urlencoded',
+                    'Accept-Encoding': 'application/gzip',
+                    'X-RapidAPI-Key': '34739fb105msha98da30af8e79d0p117466jsncd7575a611d8',
+                    'X-RapidAPI-Host': 'google-translate1.p.rapidapi.com'
+                },
+                body: encodedParams
+            };
+
+            fetch('https://google-translate1.p.rapidapi.com/language/translate/v2', options)
+                .then(response => response.json())
+                .then(response => document.getElementById("TextoSalida").value = response.data.translations[0].translatedText)
+                .catch(err => console.error(err));
+        }
+    </script>
+</body>
+
+</html>

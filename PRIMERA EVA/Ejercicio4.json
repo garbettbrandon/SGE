@@ -1,0 +1,30 @@
+{
+    "alumnos": [
+        {
+            "name": "David",
+            "edad": 20,
+            "numero": 644332255,
+            "asignaturas primero": [
+                {
+                    "asignatura": "Matematicas",
+                    "nota": 6
+                },
+                {
+                    "asignatura": "Lengua",
+                    "nota": 10
+                },
+                {
+                    "asignatura": "Sociales",
+                    "nota": 5
+                }
+            ],
+            "vivienda": {
+                "localidad": "Madrid",
+                "calle": "Calle San Toledo 22",
+                "población": "Madrid",
+                "codigo postal": "29004"
+            },
+            "coche": false
+        }
+    ]
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORMULARIO</title>
+</head>
+
+<body>
+    <img src="reino-unido.png" alt="">
+    <img src="espana.png" alt="">
+    <H1 id="h1">Iniciar Sesión</H1>
+    <input type="button" id="google" value="Entrar con Google">
+    <h3 id="h3_1">O bien</h3>
+    <input type="text" id="correo" placeholder="Correo electrónico"><br><br>
+    <input type="text" id="contraseña" placeholder="Contraseña"><br><br>
+    <a href="" id="a">He olvidado mi contraseña</a><br><br>
+    <input type="button" id="Iniciar" value="Iniciar Sesión">
+    <h3 id="h3_2">¿Eres nuevo cliente?</h3>
+    <input type="button" id="create" value="Crear cuenta">
+
+    <script>
+        window.onload = function () {
+            var ln = navigator.language;
+            if (ln == 'en-US') {
+                document.getElementById('h1').innerHTML = 'Login'
+                document.getElementById('google').value = 'Enter with Google'
+                document.getElementById('h3_1').innerHTML = 'Or'
+                document.getElementById('correo').placeholder = 'Email adress'
+                document.getElementById('contraseña').placeholder = 'Password'
+                document.getElementById('a').innerHTML = 'I forgot my password'
+                document.getElementById('Iniciar').value = 'Login'
+                document.getElementById('h3_2').innerHTML = '¿Are you new here?'
+                document.getElementById('create').value = 'Create Account'
+            } else {
+                console.log("Otro idioma");
+            }
+        }
+    </script>
+</body>
+
+</html>

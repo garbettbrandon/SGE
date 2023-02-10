@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practica Child</title>
+</head>
+<body>
+    <input type="radio" name="foto" id="gato">GATO 
+    <input type="radio" name="foto" id="perro">PERRO 
+    <input type="radio" name="foto" id="loro">LORO 
+    <input type="button" name="añadir" id="add" value="AÑADIR">
+    <input type="button" name="borrar" id="del" value="BORRAR">
+</body>
+<script>
+    document.getElementById('add').addEventListener('click',anadir,false);
+
+    var enlaces = new Array();
+    enlaces['gato'] = 'https://es.wikipedia.org/wiki/Felis_silvestris_catus';
+    enlaces['perro'] = 'https://es.wikipedia.org/wiki/Canis_familiaris';
+    enlaces['loro'] = 'https://es.wikipedia.org/wiki/Psittacoidea';
+
+    var fotos = new Array();
+    fotos['gato'] = 'https://i.pinimg.com/474x/a0/57/5b/a0575b7cf9a3bf8b53e474b4f944b31a.jpg';
+    fotos['perro'] = 'https://cdn-icons-png.flaticon.com/256/6028/6028719.png';
+    fotos['loro'] = 'https://m.media-amazon.com/images/I/B1Xjto-gAoS._CR0,504,3024,3024_UX256.jpg';
+
+    function anadir () {
+        const imagen = document.createElement('img');
+        const enlace = document.createElement('a');
+        if(document.getElementById('gato').checked){
+            enlace.href = enlaces['gato'];
+            enlace.appendChild(imagen);
+            enlace.target = '_blank'
+            imagen.src = fotos['gato'];
+        }else if(document.getElementById('perro').checked){
+            enlace.href = enlaces['perro'];
+            enlace.appendChild(imagen);
+            enlace.target = '_blank'
+            imagen.src = fotos['perro'];
+        }else if(document.getElementById('loro').checked){
+            enlace.href = enlaces['loro'];
+            enlace.appendChild(imagen);
+            enlace.target = '_blank'
+            imagen.src = fotos['loro'];
+        }
+        document.body.appendChild(enlace);
+    }
+
+    document.getElementById('del').addEventListener('click',borrar,false);
+    function borrar () {
+        var mijo = document.body.lastChild;
+        document.body.removeChild(mijo);
+    }
+</script>
+</html>

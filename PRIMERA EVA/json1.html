@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const Persona = {
+            nombre: "Brandon",
+            edad: 26,
+            sexo: "Masculino",
+            telefono: 645697636,
+            coche: true,
+            direccion: {
+                calle: "Calle Caoba",
+                localidad: "Madrid",
+                puerta: 4,
+                cp: 28005
+            },
+            asignaturas: [
+                {
+                    nombre: "Programación multimedia",
+                    curso: 2,
+                    horas: 200
+                },
+                {
+                    nombre: "Programación Java",
+                    curso: 2,
+                    horas: 150
+                }
+            ],
+            centro: {
+                nombreInsti: "Juan de la Cierva",
+                localidad: "Madrid"
+            },
+        }
+        const amigos =
+            [
+                {
+                    nombre: "David",
+                    edad: "25",
+                    equipo: "Barcelona",
+                    trabaja: true,
+                    telefono: 643245434,
+                    estudios: {
+                        familiaProfesional: "Ciencias",
+                        nivel: "Amateur",
+                        lugar: "Madrid"
+                    }
+                },
+                {
+                    nombre: "Paco",
+                    edad: "30",
+                    equipo: "Madrid",
+                    trabaja: false,
+                    telefono: 643305434,
+                    estudios: {
+                        familiaProfesional: "Modelaje",
+                        nivel: "Amateur",
+                        lugar: "Madrid"
+                    }
+                },
+
+                {
+                    nombre: "Marta",
+                    edad: "19",
+                    equipo: "Rayo",
+                    trabaja: true,
+                    telefono: 643305434,
+                    estudios: {
+                        familiaProfesional: "Biologia",
+                        nivel: "Profesional",
+                        lugar: "Cuenca"
+                    }
+                }
+            ]
+
+            Persona.friends = amigos
+
+
+        console.log(Persona)
+        document.write(JSON.stringify(Persona))
+        Persona.friends.pop()
+    
+        console.log(Persona)
+        document.write("<br/> <br/>"+JSON.stringify(Persona))
+
+    </script>
+</body>
+
+</html>

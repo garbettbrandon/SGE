@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Ejercicio 2</title>
+</head>
+
+<body>
+    <input type="text" value="Nombre">
+    <input type="text" value="Apellido">
+    <input type="checkbox" value="Azul">Azul</input>
+    <input type="checkbox" value="Rojo">Rojo</input>
+    <input type="checkbox" value="Verde">Verde</input>
+    <input type="button" value="Enviar">
+    <script>
+        const nombre = document.getElementsByTagName('input')[0];
+        const apellido = document.getElementsByTagName('input')[1];
+        const azul = document.getElementsByTagName('input')[2];
+        const rojo = document.getElementsByTagName('input')[3];
+        const verde = document.getElementsByTagName('input')[4];
+        const btn = document.getElementsByTagName('input')[5];
+        btn.addEventListener("click", validarDatos)
+        function validarDatos() {
+            if ((nombre.value.length >= 5 && nombre.value.length <= 40) && apellido.value.length > 0) {
+                if (!azul.checked && !rojo.checked && !verde.checked) {
+                    alert("Debes seleccionar un color!")
+                }
+            } else {
+                alert("Nombre o Apellido no válido!");
+            }
+        }
+    </script>
+</body>
+
+</html>

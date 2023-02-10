@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Ejercicio 1</title>
+</head>
+
+<body>
+    <input type="text" name="" id="texto">
+    <input type="button" value="Arriba">
+    <input type="button" value="Debajo" id="debajo">
+    <ul id="lista"></ul>
+</body>
+<script>
+    document.getElementById('debajo').addEventListener('click', AddLast, false);
+
+    function AddLast() {
+        var texto = document.getElementById('texto').value;
+        const parrafo = document.createElement('li')
+        parrafo.innerHTML = texto
+        document.getElementById('lista').appendChild(parrafo)
+    }
+
+    document.getElementsByTagName('input')[1].addEventListener('click', AddFirst, false);
+
+    function AddFirst() {
+        var texto = document.getElementById('texto').value;
+        const parrafo = document.createElement('li')
+        parrafo.innerHTML = texto
+        document.getElementById('lista').insertBefore(parrafo, document.getElementById("lista").firstChild)
+    }
+</script>
+
+</html>

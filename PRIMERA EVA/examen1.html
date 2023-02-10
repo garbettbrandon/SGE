@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen</title>
+</head>
+
+<body>
+    <input type="text" name="texto">
+    <input type="button" value="Arriba">
+    <input type="button" value="Debajo" id="debajo">
+    <ul id="lista"></ul>
+
+    <script>
+        let inputText = document.querySelector("input[name='texto']");
+        let btnArriba = document.querySelector("input[value='Arriba']");
+        let btnDebajo = document.querySelector("#debajo");
+        let lista = document.querySelector("#lista");
+
+        btnDebajo.addEventListener("click", function () {
+            let li = document.createElement("li");
+            li.innerHTML = inputText.value;
+            lista.appendChild(li);
+        });
+
+        btnArriba.addEventListener("click", function() {
+            let li = document.createElement("li");
+            li.innerHTML = inputText.value;
+            lista.insertBefore(li, lista.firstChild);
+        });
+    </script>
+
+</body>
+
+</html>

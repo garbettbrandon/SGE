@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORMULARIO</title>
+</head>
+
+<body>
+    <H1 id="h1">Iniciar Sesión</H1>
+    <input type="button" id="google" value="Entrar con Google">
+    <h3 id="h3_1">O bien</h3>
+    <input type="text" id="correo"><br><br>
+    <input type="text" id="contraseña"><br><br>
+    <a href="" id="a">He olvidado mi contraseña</a><br><br>
+    <input type="button" id="Iniciar" value="Iniciar Sesión">
+    <h3 id="h3_2">¿Eres nuevo cliente?</h3>
+    <input type="button" id="Iniciar" value="Crear cuenta">
+
+    <script>
+        window.onload = function () {
+
+            console.log(navigator.language)
+
+            var ln = navigator.language;
+            let pagActual = window.location.pathname;
+
+            console.log(window.location.pathname)
+
+            if (ln == 'en-US' && pagActual.includes("indexEs")) {
+                window.location.href = 'indexEn.html';
+            } else if (ln == 'es-ES' && pagActual.includes("indexEn")) {
+                window.location.href = 'indexEs.html';
+            } else {
+                console.log("Otro idioma");
+            }
+
+        }
+    </script>
+</body>
+
+</html>

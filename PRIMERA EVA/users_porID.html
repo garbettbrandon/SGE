@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <title>User Especifico</title>
+</head>
+
+<body>
+    <div class="position-absolute top-50 start-50 translate-middle">
+        <div class="table-responsive card">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>NAME</th>
+                        <th>SALARY</th>
+                    </tr>
+                </thead>
+                <tbody id="contenido">
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+
+        var contenido = document.querySelector('#contenido')
+
+        const parsedUrl = new URL(window.location.href)
+        console.log(`La marca es ${parsedUrl.searchParams.get("ID")}`)
+
+        var id = parsedUrl.searchParams.get("ID")
+
+        const cors = 'https://cors-anywhere.herokuapp.com/'
+        const yourUrl = cors + 'https://nodejs-mysql-restapi-production-d8bd.up.railway.app/api/employees/';
+
+        fetch(cors + 'https://nodejs-mysql-restapi-production-d8bd.up.railway.app/api/employees/' + id)
+            .then(res => res.json())
+            .then(datos => {
+                dato_id(datos)
+            })
+
+
+        function dato_id(datos) {
+            console.log(datos)
+            contenido.innerHTML = ""
+            contenido.innerHTML += `
+                    <tr>
+                        <td>${datos.id}</td>
+                        <td>${datos.name}</td>
+                        <td>${datos.salary}</td>
+                    </tr>
+                `
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Ejercicio 3</title>
+</head>
+
+<body>
+    <input type="text" value="Pokemon">
+    <input type="text" value="Typo">
+    <input type="button" value="Crear">
+</body>
+
+<script>
+    let listar = document.getElementsByTagName('input')[2];
+    listar.addEventListener("click", traer, false)
+
+    const url = 'https://pokeapi.co/api/v2/pokemon/'
+
+    function traer() {
+        fetch(url)
+            .then(res => res.json())
+            .then(datos => {
+                tabla(datos)
+            })
+    }
+
+    function tabla(datos) {
+        const tabla = document.createElement('table')
+        tabla.innerHTML = ""
+        for (let valor of datos) {
+            contenido.innerHTML += `
+                    <tr>
+                        <td>${valor.id}</td>
+                        <td>${valor.pokemon}</td>
+                        <td>${valor.tipo}</td>
+                    </tr>
+                `
+        }
+    }
+
+    document.getElementsByTagName('input')[2].addEventListener('click',añadir,false);
+
+    function añadir() {
+        var poke = document.getElementsByTagName('input')[0].value;
+        var tipo = document.getElementsByTagName('input')[1].value;
+        const data = {
+            pokemon: poke,
+            tipo: tipo
+        }
+        fetch(url, { method: 'POST', body: JSON.stringify(data), headers: { 'Content-Type': 'application/json' } })
+            .then(response => response.json())
+            .then(datos => console.log(datos));
+    }
+
+</script>
+
+</html>

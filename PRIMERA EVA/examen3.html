@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen3</title>
+</head>
+
+<body>
+    <input type="text" value="Pokemon">
+    <input type="text" value="Tipo">
+    <input type="button" value="Crear">
+</body>
+
+<script>
+    const url = 'https://pokeapi.co/api/v2/pokemon/';
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            // Crea una tabla dinámica
+            const table = document.createElement('table');
+            table.setAttribute('id', 'data-table');
+            table.innerHTML = `
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Pokemon</th>
+                    <th>Tipo</th>
+                </tr>
+            </thead>
+            <tbody>
+            `;
+
+            // Crea una fila con los datos del registro
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${data.id}</td>
+                <td>${data.pokemmon}</td>
+                <td>${data.tipo}</td>
+            `;
+
+            table.appendChild(row);
+            table.innerHTML += '</tbody>';
+
+            // Añade la tabla al documento
+            document.body.appendChild(table);
+        });
+
+        document.getElementsByTagName('input')[2].addEventListener('click',añadir,false);
+
+        function añadir() {
+        var poke = document.getElementsByTagName('input')[0].value;
+        var tipo = document.getElementsByTagName('input')[1].value;
+        const data = {
+            pokemon: poke,
+            tipo: tipo
+        }
+        fetch(url, { method: 'POST', body: JSON.stringify(data), headers: { 'Content-Type': 'application/json' } })
+            .then(response => response.json())
+            .then(datos => console.log(datos));
+    }
+</script>
+
+</html>

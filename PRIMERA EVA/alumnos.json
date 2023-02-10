@@ -1,0 +1,48 @@
+{
+  "students": [
+    {
+      "name": "Alberto",
+      "age": 25,
+      "phone": 123456789,
+      "subjects": [
+        {
+          "name": "Matemáticas",
+          "grade": 8
+        },
+        {
+          "name": "Física",
+          "grade": 9
+        }
+      ],
+      "address": {
+        "locality": "Madrid",
+        "street": "Calle de la Luna",
+        "population": 28000,
+        "postalCode": 28080
+      },
+      "hasCar": true
+    },
+    {
+      "name": "Beatriz",
+      "age": 22,
+      "phone": 987654321,
+      "subjects": [
+        {
+          "name": "Literatura",
+          "grade": 7
+        },
+        {
+          "name": "Historia",
+          "grade": 8
+        }
+      ],
+      "address": {
+        "locality": "Barcelona",
+        "street": "Calle del Sol",
+        "population": 200000,
+        "postalCode": 28006
+      },
+      "hasCar": false
+    }
+  ]
+}

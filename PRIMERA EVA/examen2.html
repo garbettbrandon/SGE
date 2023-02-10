@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen2</title>
+</head>
+
+<body>
+    <input type="text" value="Nombre">
+    <input type="text" value="Apellido">
+    <input type="checkbox" value="Azul">Azul</input>
+    <input type="checkbox" value="Rojo">Rojo</input>
+    <input type="checkbox" value="Verde">Verde</input>
+    <input type="button" value="Enviar">
+
+    <script>
+        let nombre = document.getElementsByTagName('input')[0];
+        let apellido = document.getElementsByTagName('input')[1];
+        let checkboxes = document.querySelectorAll("input[type='checkbox']");
+        let btnEnviar = document.querySelector("input[value='Enviar']");
+        let colorsSelected = 0;
+
+        btnEnviar.addEventListener("click", function () {
+
+            if (!nombre.value || !apellido.value) {
+                alert("Debe llenar todos los campos");
+                return;
+            }
+
+            if (nombre.value.length < 5 || nombre.value.length > 40) {
+                alert("El nombre debe tener entre 5 y 40 caracteres");
+                return;
+            }
+
+            for (let i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].checked) {
+                    colorsSelected++;
+                }
+            }
+
+            if (colorsSelected == 0) {
+                alert("Debe seleccionar al menos un color");
+                return;
+            }
+
+            alert("Todo correcto");
+            colorsSelected = 0
+        });
+    </script>
+
+</body>
+
+</html>
